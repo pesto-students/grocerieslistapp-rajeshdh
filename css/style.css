@@ -1,0 +1,7 @@
+.input-edit{
+    display: none;
+}
+
+.input-edit-visible {
+    display: inline;
+}
