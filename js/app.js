@@ -2,10 +2,10 @@ var currentUser;
 function login(){
 
     let user = document.getElementById('username').value;
+    if(!user) return false;
+    // show a message here
     let userData = localStorage.getItem(user);
-    let successMessage = document.querySelectorAll('.successMessage');
-    successMessage[0].classList.toggle('hidden');
-    successMessage[0].innerText = `Welcome ${user}`
+    showNotification('success', `Welcome ${user}`)
 
     if(userData){
         //fetch or create a new list
@@ -16,13 +16,24 @@ function login(){
 
     } else {
         //create a new list
-        let errorMessage = document.querySelectorAll('.errorMessage');
-       errorMessage[0].classList.toggle('hidden');
-       errorMessage[0].innerText = "You don't have any lists. Please click on Create List to create a new list."
+       showNotification('error', "You don't have any lists. Please click on Create List to create a new list.")
        document.getElementById('createList').classList.toggle('hidden');
        document.getElementById('loginForm').classList.toggle('hidden');
     }
     return false;
+}
+
+function showNotification(type, text){
+    if(type == 'success'){
+    let successMessage = document.querySelectorAll('.successMessage');
+    successMessage[0].classList.toggle('hidden');
+    successMessage[0].innerText = text;
+
+    } else {
+        let errorMessage = document.querySelectorAll('.errorMessage');
+        errorMessage[0].classList.toggle('hidden');
+        errorMessage[0].innerText = text;
+    }
 }
 
 function fetchList(){
@@ -66,10 +77,12 @@ function createNewList(){
 
 var addGroceryItem = function () {
     let name = document.getElementById('itemName').value;
+    if(!name) return;
     let id = Date.now()
     currentUser.addItem(id, name);
     let li = createListItem(id, name);
     currentUser.listContainer.appendChild(li);
+    document.getElementById('itemName').value = '';
 }
 
 var createListItem = function (id, name, isChecked = false) {
