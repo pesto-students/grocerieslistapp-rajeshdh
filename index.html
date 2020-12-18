@@ -10,49 +10,49 @@
 </head>
 
 <body>
-  <main>
-    <nav>
+
+
+  <div class="container">
+    <div class="header">
       <h1>Groceries List</h1>
-    </nav>
-    <div class="container">
-      <div class="noticebox">
-        <div class="successMessage hidden"></div>
-        <div class="errorMessage hidden"></div>
+    </div>
 
-      </div>
-      <div id="login" class="login">
-        <form id="loginForm">
-          <input type="text" name="username" required id="username" value="" placeholder="Enter your username" />
-
-          <button type="button" value="Submit" onclick="return login(event)" >Submit</button>
-
-        </form>
-
-        <button type="button" onclick="fetchList()" 
-         id="fetchList"
-         name="fetchList" class="hidden">Fetch Old</button>
-        <button type="button" onclick="createNewList()" 
-         id="createList" name="createList"
-          class="hidden">Create List</button>
-      </div>
-      <div id="groceries-list" class="groceries-list hidden">
-        <form class="groceries" id="groceriesForm" onsubmit="return false">
-          <label for="itemName">Add New Item</label>
-          <input type="text" name="itemName" id="itemName" placeholder="Add an item" />
-          <button id="addItem" class="btn" onclick="addGroceryItem()">Add</button>
-        </form>
-
-        <div id="groceryContainer">
-
-        </div>
-        <h3>Completed</h3>
-        <div id="completedItemsContainer">
-
-        </div>
-      </div>
+    <div class="noticebox">
+      <div class="successMessage hidden"></div>
+      <div class="errorMessage hidden"></div>
 
     </div>
-  </main>
+    <div id="login" class="login">
+      <form id="loginForm">
+        <input type="text" name="username" required id="username" value="" placeholder="Enter your username" />
+
+        <button type="button" value="Submit" onclick="return login(event)">Submit</button>
+
+      </form>
+
+      <button type="button" onclick="fetchList()" id="fetchList" name="fetchList" class="hidden">Fetch An Old
+        List</button>
+      <button type="button" onclick="createNewList()" id="createList" name="createList" class="hidden">Create A New
+        List</button>
+    </div>
+    <div id="groceries-list" class="groceries-list hidden">
+      <form class="groceries" id="groceriesForm" onsubmit="return false">
+        <label for="itemName">Add New Item</label>
+        <input type="text" name="itemName" id="itemName" placeholder="Add an item" />
+        <button id="addItem" class="btn" onclick="addGroceryItem()">+</button>
+
+      </form>
+      <div id="remaningItems">
+
+      </div>
+
+      <div id="groceryContainer">
+
+      </div>
+    </div>
+
+  </div>
+
   <script src="js/htmlHelper.js"></script>
   <script src="js/user.js"></script>
   <script src="js/app.js"></script>
