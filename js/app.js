@@ -1,5 +1,7 @@
-var currentUser;
 
+const APP_NAME = 'my_groceries';
+
+var currentUser;
 function login() {
 
     let user = document.getElementById('username').value;
@@ -8,7 +10,10 @@ function login() {
         return false;
     }
     // show a message here
-    let userData = localStorage.getItem(user);
+    let appData = localStorage.getItem(APP_NAME);
+    appData = appData ? JSON.parse(appData) : {};
+    let userData = appData && appData[user] || undefined;
+
     showNotification('success', `Welcome ${user}`)
 
     if (userData) {
@@ -47,8 +52,10 @@ function fetchList() {
     document.getElementById('login').classList.toggle('hidden');
     document.getElementById('groceries-list').classList.toggle('hidden');
     let username = document.getElementById('username').value;
-    let userData = localStorage.getItem(username);
-    let groceriesList = JSON.parse(userData);
+    let appData = localStorage.getItem(APP_NAME);
+    appData = appData ? JSON.parse(appData) : {};
+ 
+    let groceriesList = appData && appData[username];
     currentUser = new User(username, groceriesList);
     currentUser.listContainer = generateList('groceryContainer');
 
